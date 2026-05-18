@@ -17,6 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ── FIX PAGE BLANCHE AU RETOUR ── */
+  // Quand on revient via bouton retour du navigateur, retirer la classe page-exit
+  window.addEventListener('pageshow', (e) => {
+    const wrap = document.querySelector('.page-wrap');
+    if (wrap) {
+      wrap.classList.remove('page-exit');
+      // Forcer l'animation pageIn à se rejouer
+      wrap.style.opacity = '';
+      wrap.style.animation = 'none';
+      void wrap.offsetWidth; // reflow
+      wrap.style.animation = '';
+    }
+  });
+
   /* ── NAV ACTIVE ── */
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(a => {
