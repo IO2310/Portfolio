@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiveCode — Ismaël Ouzani</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body style="display:flex;flex-direction:column;height:100vh">
+
+<div class="toast" id="toast"></div>
+
+<div class="topbar">
+  <div class="mac-dots"><div class="dot d-red"></div><div class="dot d-yellow"></div><div class="dot d-green"></div></div>
+  <span class="tb-title">LiveCode <span>by Ismaël</span></span>
+  <div class="tb-tabs">
+    <div class="tab active" onclick="switchTab('html')">index.html</div>
+    <div class="tab" onclick="switchTab('css')">style.css</div>
+    <div class="tab" onclick="switchTab('js')">script.js</div>
+  </div>
+  <div class="tb-right">
+    <span class="live-badge">● LIVE</span>
+    <button class="run-btn" onclick="forceRefresh()">▶ Exécuter</button>
+    <button class="dl-btn" onclick="downloadAll()">⬇ Télécharger</button>
+    <a href="../index.html" class="back-link">← Portfolio</a>
+  </div>
+</div>
+
+<div style="display:flex;flex:1;overflow:hidden">
+  <div class="sidebar">
+    <div class="sb-head">Explorateur</div>
+    <div class="file-list">
+      <div class="file-item active" onclick="switchTab('html')">📄 <span style="flex:1">index.html</span><span class="file-lang fl-html">HTML</span></div>
+      <div class="file-item" onclick="switchTab('css')">🎨 <span style="flex:1">style.css</span><span class="file-lang fl-css">CSS</span></div>
+      <div class="file-item" onclick="switchTab('js')">⚡ <span style="flex:1">script.js</span><span class="file-lang fl-js">JS</span></div>
+    </div>
+    <div class="sb-info">
+      <div class="sb-stat">Lignes : <span id="lineCount">—</span></div>
+      <div class="sb-stat">Chars : <span id="charCount">—</span></div>
+      <div class="sb-stat">Ctrl+S sauvegarde</div>
+    </div>
+  </div>
+
+  <div class="editor-pane">
+    <div class="editor-bar">
+      <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Éditeur</span>
+      <span class="eb-file" id="currentFile">index.html</span>
+      <div class="mod-dot" id="modDot"></div>
+    </div>
+    <div class="editor-body">
+      <div class="line-nums" id="lineNums"></div>
+      <div class="code-area">
+        <div class="hl" id="hlCode"></div>
+        <textarea id="codeInput" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" id="divider"></div>
+
+  <div class="preview-pane" id="previewPane">
+    <div class="preview-bar">
+      <div class="preview-url"><span class="pu-dot"></span>localhost / <span style="color:var(--blue)">index.html</span></div>
+      <button class="pb-btn" onclick="forceRefresh()">↺</button>
+      <button class="pb-btn" onclick="openFull()">⤢</button>
+    </div>
+    <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+  </div>
+</div>
+
+<div class="statusbar">
+  <div class="st">● HTML5</div>
+  <div class="st">UTF-8</div>
+  <div class="st" id="stCursor">Ln 1, Col 1</div>
+  <div class="st r">Ismaël Ouzani · BTS SIO SLAM 2026</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

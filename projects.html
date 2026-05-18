@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets — Ismaël Ouzani</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Ismaël Ouzani</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="projects.html">Projets</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Me recruter</a>
+    <button class="nav-hamburger" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</nav>
+
+<nav class="nav-drawer">
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="projects.html">Projets</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html">Me recruter →</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="proj-hero">
+    <span class="eyebrow reveal">// 02 — Projets</span>
+    <h1 class="section-title reveal" data-d=".08" data-words>Ce que j'ai déjà construit.</h1>
+  </div>
+
+  <div class="proj-grid">
+
+    <!-- Projet 01 — Ce portfolio -->
+    <a href="https://github.com/IO2310/ismael-portfolio" target="_blank" class="pcard featured zoom-in">
+      <div>
+        <div class="pc-num">01</div>
+        <div class="pc-tags">
+          <span class="pc-tag">HTML</span>
+          <span class="pc-tag">CSS</span>
+          <span class="pc-tag">JS</span>
+          <span class="pc-tag">GSAP</span>
+          <span class="pc-tag vert">GitHub ↗</span>
+        </div>
+        <div class="pc-title">Ce portfolio</div>
+        <p class="pc-desc">Site multi-pages style Apple avec animations GSAP ScrollTrigger, révélation mot par mot, transitions de pages cinématiques et formulaire EmailJS opérationnel.</p>
+        <div class="pc-checks">
+          <span class="pc-check">✓ En ligne</span>
+          <span class="pc-check">✓ Formulaire actif</span>
+          <span class="pc-check">✓ Multi-pages</span>
+        </div>
+      </div>
+      <div class="feat-visual">🌐</div>
+      <span class="pc-arrow">→</span>
+    </a>
+
+    <!-- Projet 02 — LiveCode -->
+    <a href="live-editor/index.html" class="pcard zoom-in" data-d=".08">
+      <div class="pc-num">02</div>
+      <div class="pc-tags">
+        <span class="pc-tag">HTML</span>
+        <span class="pc-tag">CSS</span>
+        <span class="pc-tag">JS</span>
+        <span class="pc-tag rouge">Live démo</span>
+      </div>
+      <div class="pc-title">LiveCode — éditeur en direct</div>
+      <p class="pc-desc">Éditeur HTML/CSS/JS avec rendu temps réel, coloration syntaxique, sauvegarde auto et téléchargement. Même logique que CodePen — from scratch.</p>
+      <div class="pc-checks">
+        <span class="pc-check">✓ Cliquer pour tester</span>
+        <span class="pc-check">✓ Hors-ligne</span>
+      </div>
+      <span class="pc-arrow">→</span>
+    </a>
+
+    <!-- Projet 03 — TaskBoard -->
+    <a href="taskboard/taskboard.html" class="pcard zoom-in" data-d=".16">
+      <div class="pc-num">03</div>
+      <div class="pc-tags">
+        <span class="pc-tag">HTML</span>
+        <span class="pc-tag">CSS</span>
+        <span class="pc-tag">JS</span>
+        <span class="pc-tag vert">Développé seul ✓</span>
+      </div>
+      <div class="pc-title">TaskBoard — Kanban</div>
+      <p class="pc-desc">Gestionnaire de tâches Kanban développé en autonomie totale. Ajout, déplacement, suppression avec sauvegarde automatique. 100% code personnel.</p>
+      <div class="pc-checks">
+        <span class="pc-check">✓ Cliquer pour tester</span>
+        <span class="pc-check">✓ 100% code personnel</span>
+      </div>
+      <span class="pc-arrow">→</span>
+    </a>
+
+    <!-- Projet 04 — À venir -->
+    <div class="pcard dim">
+      <div class="pc-num">04</div>
+      <div class="pc-tags"><span class="pc-tag gris">En alternance</span></div>
+      <div class="pc-title">Projets entreprise</div>
+      <p class="pc-desc">Les projets développés en équipe avec de vraies contraintes métier. C'est ici que tout commence vraiment.</p>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span class="footer-logo">Ismaël Ouzani</span>
+        <nav class="footer-links">
+          <a href="about.html">À propos</a>
+          <a href="projects.html">Projets</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://github.com/IO2310/ismael-portfolio" target="_blank">GitHub</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Ismaël Ouzani · BTS SIO SLAM
+        <span class="footer-ai">Conçu avec l'aide d'outils d'intelligence artificielle</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="libs/gsap.min.js"></script>
+<script src="libs/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

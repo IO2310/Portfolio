@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskBoard — Ismaël Ouzani</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="test.css">
+  <style>
+    /* Modal login */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.4);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white; border-radius: 18px;
+      padding: 32px; width: 100%; max-width: 360px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.15);
+      transform: translateY(10px);
+      transition: transform .2s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.02em; }
+    .modal p  { font-size: 13px; color: #6e6e73; margin-bottom: 20px; }
+    .modal-input {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      background: #f5f5f7; border: .5px solid rgba(0,0,0,.1);
+      font-size: 15px; outline: none; margin-bottom: 10px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .modal-input:focus { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,.1); background: white; }
+    .modal-btn {
+      width: 100%; padding: 12px; border-radius: 10px;
+      background: #0071e3; color: white; border: none;
+      font-size: 15px; font-weight: 500; cursor: pointer;
+      transition: background .2s;
+    }
+    .modal-btn:hover { background: #0077ed; }
+    .modal-err { font-size: 13px; color: #d70015; margin-top: 8px; display: none; }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; font-size: 18px;
+      color: #6e6e73; cursor: pointer;
+    }
+
+    /* Bouton admin discret */
+    .admin-trigger {
+      position: fixed; bottom: 20px; right: 20px;
+      font-size: 11px; color: #aeaeb2;
+      background: none; border: none; cursor: pointer;
+      padding: 6px 10px; border-radius: 6px;
+      transition: color .2s, background .2s;
+    }
+    .admin-trigger:hover { color: #6e6e73; background: rgba(0,0,0,.04); }
+
+    /* Badge admin connecté */
+    .admin-badge {
+      display: none;
+      position: fixed; bottom: 20px; right: 20px;
+      font-size: 12px; color: #1a7f3c;
+      background: rgba(48,209,88,.1);
+      border: .5px solid rgba(48,209,88,.25);
+      padding: 6px 14px; border-radius: 20px;
+      cursor: pointer; transition: all .2s;
+    }
+    .admin-badge:hover { background: rgba(48,209,88,.18); }
+
+    /* Cacher les boutons admin par défaut */
+    .btn-ajouter { display: none; }
+    .admin-mode .btn-ajouter { display: block; }
+    .tache-actions .admin-only { display: none; }
+    .admin-mode .tache-actions .admin-only { display: inline-flex; }
+  </style>
+</head>
+<body>
+
+  <!-- Modal login -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" style="position:relative">
+      <button class="modal-close" onclick="fermerModal()">✕</button>
+      <h2>Accès admin</h2>
+      <p>Connexion réservée à Ismaël Ouzani</p>
+      <input class="modal-input" type="email" id="loginEmail" placeholder="Email">
+      <input class="modal-input" type="password" id="loginPassword" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')seConnecter()">
+      <button class="modal-btn" onclick="seConnecter()">Se connecter</button>
+      <p class="modal-err" id="loginErr">Email ou mot de passe incorrect.</p>
+    </div>
+  </div>
+
+  <header>
+    <h1>TaskBoard</h1>
+    <a href="../projects.html" class="header-back">← Projets</a>
+  </header>
+
+  <main>
+    <div class="colonne" id="todo">
+      <h2>À faire</h2>
+      <div class="taches"></div>
+      <button class="btn-ajouter">+ Ajouter une tâche</button>
+    </div>
+    <div class="colonne" id="encours">
+      <h2>En cours</h2>
+      <div class="taches"></div>
+      <button class="btn-ajouter">+ Ajouter une tâche</button>
+    </div>
+    <div class="colonne" id="termine">
+      <h2>Terminé</h2>
+      <div class="taches"></div>
+      <button class="btn-ajouter">+ Ajouter une tâche</button>
+    </div>
+  </main>
+
+  <!-- Bouton admin discret -->
+  <button class="admin-trigger" id="adminTrigger" onclick="ouvrirModal()">⚙</button>
+  <button class="admin-badge" id="adminBadge" onclick="seDeconnecter()">✓ Admin · Déconnexion</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="test.js"></script>
+</body>
+</html>

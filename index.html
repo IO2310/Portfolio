@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ismaël Ouzani — Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Ismaël Ouzani</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="projects.html">Projets</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Me recruter</a>
+    <button class="nav-hamburger" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</nav>
+
+<nav class="nav-drawer">
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="projects.html">Projets</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html">Me recruter →</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO + STATS — un seul bloc sans séparation -->
+  <div class="hero-wrap">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+
+    <div class="hero-content">
+      <div class="reveal" data-d="0">
+        <span class="hero-chip">
+          <span class="chip-dot"></span>
+          Disponible · Septembre 2026
+        </span>
+      </div>
+      <h1 class="hero-name">
+        <span class="reveal" style="display:block" data-d=".1">Ismaël</span>
+        <span class="reveal" style="display:block" data-d=".18"><span class="grad-text">Ouzani</span></span>
+      </h1>
+      <p class="hero-role reveal" data-d=".28">Futur développeur · BTS SIO SLAM</p>
+      <p class="hero-desc reveal" data-d=".36">
+        Débutant en développement, mais déjà capable de concevoir, <strong>apprendre</strong> et livrer des projets <strong>fonctionnels</strong>.
+      </p>
+      <div class="hero-btns reveal" data-d=".44">
+        <a href="contact.html" class="btn btn-blue btn-mag">Me recruter <span class="btn-arrow">→</span></a>
+        <a href="projects.html" class="btn btn-gray btn-mag">Voir mes projets <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- STATS GLASSMORPHISM — même bloc que le hero, zéro bordure -->
+    <div class="stats-wrap">
+      <div class="stats-grid">
+        <div class="stat-card zoom-in">
+          <div class="stat-num"><span data-count="100">0</span><span class="stat-unit">%</span></div>
+          <div class="sc-desc">Apprentissage autodidacte continu · HTML, CSS, JavaScript en cours d’acquisition</div>
+        </div>
+        <div class="stat-card zoom-in" data-d=".08">
+          <div class="stat-num"><span data-count="3">0</span><span class="stat-unit"> proj.</span></div>
+          <div class="stat-desc">Projets fonctionnels et déployables</div>
+        </div>
+        <div class="stat-card zoom-in" data-d=".16">
+          <div class="stat-num"><span data-count="3">0</span><span class="stat-unit"> j.</span></div>
+          <div class="stat-desc">Pour livrer ce portfolio from scratch</div>
+        </div>
+        <div class="stat-card zoom-in" data-d=".24">
+          <div class="stat-num neutral">2026</div>
+          <div class="stat-desc">Disponible dès septembre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES — fond noir, grille propre -->
+  <section class="features">
+    <div class="section-inner">
+      <div class="features-header">
+        <span class="eyebrow reveal">Pourquoi moi</span>
+        <h2 class="features-title reveal" data-d=".08">
+          L'état d'esprit <span class="features-grad">qui fait la différence.</span>
+        </h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card zoom-in">
+          <div class="feature-icon fi-blue">
+            <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div class="feature-title">Résultats concrets</div>
+          <p class="feature-desc">Capable d’apprendre rapidement et de m’adapter à de nouveaux outils et technologies.</p>
+        </div>
+        <div class="feature-card zoom-in" data-d=".08">
+          <div class="feature-icon fi-purple">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="feature-title">Vision système</div>
+          <p class="feature-desc">J’explore activement le développement web, les workflows modernes et les outils d’IA.</p>
+        </div>
+        <div class="feature-card zoom-in" data-d=".16">
+          <div class="feature-icon fi-green">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="feature-title">Prêt dès le J1</div>
+          <p class="feature-desc">Autonome, curieux, adaptable. Je sais apprendre vite et livrer de la valeur immédiatement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <span class="eyebrow reveal">BTS SIO · SLAM · Lens, France</span>
+      <h2 class="cta-title reveal" data-d=".08" data-words>Vous avez trouvé votre candidat.</h2>
+      <p class="cta-desc reveal" data-d=".16">
+        Je suis motivé, je m’investis à 100%, et je suis capable d’apprendre vite avec les outils modernes
+      </p>
+      <div class="cta-btns reveal" data-d=".24">
+        <a href="contact.html" class="btn btn-blue btn-mag">Écrire un message <span class="btn-arrow">→</span></a>
+        <a href="projects.html" class="btn btn-white-outline btn-mag">Voir mes projets <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span class="footer-logo">Ismaël Ouzani</span>
+        <nav class="footer-links">
+          <a href="about.html">À propos</a>
+          <a href="projects.html">Projets</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://github.com/IO2310/ismael-portfolio" target="_blank">GitHub</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Ismaël Ouzani · BTS SIO SLAM
+        <span class="footer-ai">Conçu avec l'aide d'outils d'intelligence artificielle</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="libs/gsap.min.js"></script>
+<script src="libs/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

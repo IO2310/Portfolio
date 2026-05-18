@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Ismaël Ouzani</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Ismaël Ouzani</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="projects.html">Projets</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Me recruter</a>
+    <button class="nav-hamburger" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</nav>
+
+<nav class="nav-drawer">
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="projects.html">Projets</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html">Me recruter →</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="contact-page">
+    <span class="eyebrow reveal">// 03 — Contact</span>
+    <h1 class="section-title reveal" data-d=".08" data-words>Vous avez trouvé votre candidat.</h1>
+
+    <div class="contact-grille">
+
+      <!-- Formulaire -->
+      <div class="formulaire reveal" data-d=".18">
+        <div class="champ-row">
+          <input class="champ" type="text" id="champ_nom" placeholder="Votre nom">
+          <input class="champ" type="email" id="champ_email" placeholder="Votre email">
+        </div>
+        <input class="champ" type="text" id="champ_sujet" placeholder="Sujet — ex : Proposition d'alternance">
+        <textarea class="champ" id="champ_message" placeholder="Votre message..."></textarea>
+        <div class="statut-form" id="statut_form"></div>
+        <button class="btn-envoyer" id="btn_envoyer" onclick="envoyerMessage()">Envoyer →</button>
+        <p class="note">⚡ Via EmailJS · Réponse sous 24h garantie</p>
+      </div>
+
+      <!-- Informations de contact -->
+      <div class="infos-contact reveal" data-d=".28">
+        <div class="info-ligne"><span class="info-label">Email</span><a href="mailto:ismael.ouzani@gmail.com" class="info-val info-lien">ismael.ouzani@gmail.com</a></div>
+        <div class="info-ligne"><span class="info-label">Localisation</span><span class="info-val">Lens, France</span></div>
+        <div class="info-ligne"><span class="info-label">Disponibilité</span><span class="info-val dispo">Septembre 2026 <span class="dispo-dot"></span></span></div>
+        <div class="info-ligne"><span class="info-label">GitHub</span><a href="https://github.com/IO2310/ismael-portfolio" target="_blank" class="info-val info-lien">IO2310 →</a></div>
+        <blockquote class="citation">Le meilleur développeur n'est pas celui qui connaît le plus de langages. C'est celui qui résout le mieux les problèmes.</blockquote>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span class="footer-logo">Ismaël Ouzani</span>
+        <nav class="footer-links">
+          <a href="about.html">À propos</a>
+          <a href="projects.html">Projets</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://github.com/IO2310/ismael-portfolio" target="_blank">GitHub</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Ismaël Ouzani · BTS SIO SLAM
+        <span class="footer-ai">Conçu avec l'aide d'outils d'intelligence artificielle</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({ publicKey: 'qGUzlrqndBUPSlxuM' });</script>
+<script src="supabase.js"></script>
+<script src="libs/gsap.min.js"></script>
+<script src="libs/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<script>
+async function envoyerMessage() {
+  const nom     = document.getElementById('champ_nom').value.trim();
+  const email   = document.getElementById('champ_email').value.trim();
+  const sujet   = document.getElementById('champ_sujet').value.trim();
+  const message = document.getElementById('champ_message').value.trim();
+  const statut  = document.getElementById('statut_form');
+  const btn     = document.getElementById('btn_envoyer');
+  if (!nom || !email || !message) {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Nom, email et message requis.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Envoi…'; statut.className = 'statut-form';
+  try {
+    await sauvegarderMessage(nom, email, sujet, message);
+    await emailjs.send('service_9iambjx', 'template_x5w20bd', {
+      from_name: nom, from_email: email,
+      subject: sujet || 'Contact via portfolio', message, to_name: 'Ismaël'
+    });
+    statut.className = 'statut-form ok';
+    statut.textContent = '✓ Message envoyé ! Réponse sous 24h.';
+    ['champ_nom','champ_email','champ_sujet','champ_message'].forEach(id => document.getElementById(id).value = '');
+  } catch {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Erreur. Écrivez à ismael.ouzani@gmail.com';
+  }
+  btn.disabled = false; btn.textContent = 'Envoyer →';
+}
+</script>
+</body>
+</html>
