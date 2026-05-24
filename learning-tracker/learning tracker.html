@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formation — Ismaël Ouzani</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="learning-tracker.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Ismaël Ouzani</a>
+    <a href="../projects.html" class="nav-back">← Projets</a>
+  </div>
+</nav>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="fermerModal()">✕</button>
+    <h2>Accès admin</h2>
+    <p>Réservé à Ismaël Ouzani</p>
+    <input class="modal-input" type="email" id="loginEmail" placeholder="Email">
+    <input class="modal-input" type="password" id="loginPassword" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')seConnecter()">
+    <button class="modal-btn" onclick="seConnecter()">Se connecter</button>
+    <p class="modal-err" id="loginErr">Identifiants incorrects.</p>
+  </div>
+</div>
+
+<button class="admin-trigger" id="adminTrigger" onclick="ouvrirModal()">⚙</button>
+<button class="admin-badge" id="adminBadge" onclick="seDeconnecter()">✓ Admin · Déconnexion</button>
+
+<div class="main">
+  <div class="page-header">
+    <span class="page-eyebrow">// Formation</span>
+    <h1 class="page-title">Ma progression<br>freeCodeCamp</h1>
+    <p class="page-sub">Suivi en temps réel · visible par les recruteurs</p>
+  </div>
+
+  <div class="prog-card">
+    <div class="prog-row">
+      <span class="prog-label">Progression globale</span>
+      <span class="prog-pct" id="gPct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="gFill"></div></div>
+    <div class="prog-sub" id="gSub">Chargement…</div>
+  </div>
+
+  <div id="certList"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="learning-tracker.js"></script>
+</body>
+</html>

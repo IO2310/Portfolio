@@ -58,7 +58,7 @@
         <div class="info-ligne"><span class="info-label">Localisation</span><span class="info-val">Lens, France</span></div>
         <div class="info-ligne"><span class="info-label">Disponibilité</span><span class="info-val dispo">Septembre 2026 <span class="dispo-dot"></span></span></div>
         <div class="info-ligne"><span class="info-label">GitHub</span><a href="https://github.com/IO2310/ismael-portfolio" target="_blank" class="info-val info-lien">IO2310 →</a></div>
-        <blockquote class="citation">Le meilleur développeur n'est pas celui qui connaît le plus de langages. C'est celui qui résout le mieux les problèmes.</blockquote>
+        <blockquote class="citation">Les technologies évoluent rapidement. Ce qui fait la différence, c’est la capacité à analyser un besoin et à proposer une solution adaptée.</blockquote>
       </div>
 
     </div>
@@ -72,7 +72,7 @@
           <a href="about.html">À propos</a>
           <a href="projects.html">Projets</a>
           <a href="contact.html">Contact</a>
-          <a href="https://github.com/IO2310/ismael-portfolio" target="_blank">GitHub</a>
+          <a href="https://github.com/IO2310/Portfolio" target="_blank">GitHub</a>
         </nav>
       </div>
       <div class="footer-bottom">
@@ -91,35 +91,5 @@
 <script src="libs/gsap.min.js"></script>
 <script src="libs/ScrollTrigger.min.js"></script>
 <script src="script.js"></script>
-<script>
-async function envoyerMessage() {
-  const nom     = document.getElementById('champ_nom').value.trim();
-  const email   = document.getElementById('champ_email').value.trim();
-  const sujet   = document.getElementById('champ_sujet').value.trim();
-  const message = document.getElementById('champ_message').value.trim();
-  const statut  = document.getElementById('statut_form');
-  const btn     = document.getElementById('btn_envoyer');
-  if (!nom || !email || !message) {
-    statut.className = 'statut-form err';
-    statut.textContent = '✗ Nom, email et message requis.';
-    return;
-  }
-  btn.disabled = true; btn.textContent = 'Envoi…'; statut.className = 'statut-form';
-  try {
-    await sauvegarderMessage(nom, email, sujet, message);
-    await emailjs.send('service_9iambjx', 'template_x5w20bd', {
-      from_name: nom, from_email: email,
-      subject: sujet || 'Contact via portfolio', message, to_name: 'Ismaël'
-    });
-    statut.className = 'statut-form ok';
-    statut.textContent = '✓ Message envoyé ! Réponse sous 24h.';
-    ['champ_nom','champ_email','champ_sujet','champ_message'].forEach(id => document.getElementById(id).value = '');
-  } catch {
-    statut.className = 'statut-form err';
-    statut.textContent = '✗ Erreur. Écrivez à ismael.ouzani@gmail.com';
-  }
-  btn.disabled = false; btn.textContent = 'Envoyer →';
-}
-</script>
 </body>
 </html>

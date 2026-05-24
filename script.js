@@ -171,3 +171,33 @@ const obsCercles = new IntersectionObserver(entries => {
   });
 }, { threshold: .3 });
 document.querySelectorAll('.sk-card').forEach(c => obsCercles.observe(c));
+
+/* ── Formulaire contact — EmailJS + sauvegarde Supabase ── */
+async function envoyerMessage() {
+  const nom     = document.getElementById('champ_nom').value.trim();
+  const email   = document.getElementById('champ_email').value.trim();
+  const sujet   = document.getElementById('champ_sujet').value.trim();
+  const message = document.getElementById('champ_message').value.trim();
+  const statut  = document.getElementById('statut_form');
+  const btn     = document.getElementById('btn_envoyer');
+  if (!nom || !email || !message) {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Nom, email et message requis.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Envoi…'; statut.className = 'statut-form';
+  try {
+    await sauvegarderMessage(nom, email, sujet, message);
+    await emailjs.send('service_9iambjx', 'template_x5w20bd', {
+      from_name: nom, from_email: email,
+      subject: sujet || 'Contact via portfolio', message, to_name: 'Ismaël'
+    });
+    statut.className = 'statut-form ok';
+    statut.textContent = '✓ Message envoyé ! Réponse sous 24h.';
+    ['champ_nom','champ_email','champ_sujet','champ_message'].forEach(id => document.getElementById(id).value = '');
+  } catch {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Erreur. Écrivez à ismael.ouzani@gmail.com';
+  }
+  btn.disabled = false; btn.textContent = 'Envoyer →';
+}
