@@ -1,0 +1,439 @@
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter_18pt-Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter_18pt-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter_18pt-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter_18pt-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter_18pt-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.rb-header {
+  padding: 60px max(20px, 6vw) 30px;
+  text-align: center;
+  position: relative;
+}
+.rb-header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.rb-back {
+  position: absolute;
+  top: 20px; left: max(20px, 4vw);
+  font-size: 14px;
+  color: #0071e3;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.rb-back:hover { opacity: .7; }
+.rb-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #0071e3, #5e5ce6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.rb-subtitle {
+  font-size: 15px;
+  color: #6e6e73;
+  font-weight: 400;
+}
+
+/* ── BARRE DE PROGRESSION ── */
+.progress-wrap {
+  background: white;
+  border-radius: 18px;
+  padding: 22px 26px;
+  margin: 0 auto 24px;
+  max-width: 900px;
+  border: .5px solid rgba(0,0,0,.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  width: calc(100% - max(40px, 12vw));
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.progress-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -.01em;
+}
+.progress-pct {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0071e3, #5e5ce6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.progress-bar {
+  height: 8px;
+  background: #f5f5f7;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0071e3, #5e5ce6, #bf5af2);
+  border-radius: 4px;
+  transition: width .8s cubic-bezier(.16,1,.3,1);
+  width: 0%;
+}
+.progress-sub {
+  font-size: 12px;
+  color: #aeaeb2;
+  margin-top: 8px;
+}
+
+/* ── FILTRES ── */
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(0,0,0,.04);
+  padding: 4px;
+  border-radius: 12px;
+  width: fit-content;
+  margin: 0 auto 24px;
+}
+.filter-tab {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: #6e6e73;
+  transition: all .2s;
+  font-family: inherit;
+}
+.filter-tab.active {
+  background: white;
+  color: #1d1d1f;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+/* ── MAIN ── */
+.rb-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 max(20px, 6vw) 80px;
+}
+
+/* ── CATÉGORIE ── */
+.categorie {
+  background: white;
+  border-radius: 18px;
+  margin-bottom: 16px;
+  border: .5px solid rgba(0,0,0,.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  overflow: hidden;
+}
+.categorie-header {
+  padding: 20px 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s;
+}
+.categorie-header:hover { background: #fafafb; }
+.cat-titre {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.cat-icone { font-size: 20px; }
+.cat-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cat-count {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6e6e73;
+  background: #f5f5f7;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.cat-arrow {
+  font-size: 14px;
+  color: #aeaeb2;
+  transition: transform .25s;
+}
+.categorie.open .cat-arrow { transform: rotate(90deg); }
+
+/* ── LISTE DE TÂCHES ── */
+.taches-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s cubic-bezier(.16,1,.3,1);
+}
+.categorie.open .taches-list {
+  max-height: 5000px;
+}
+.tache {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 26px;
+  border-top: .5px solid rgba(0,0,0,.05);
+  cursor: pointer;
+  transition: background .15s;
+  position: relative;
+}
+.tache:hover { background: #fafafb; }
+.tache.admin-mode {
+  padding-right: 50px;
+}
+
+/* Pastille à cocher */
+.pastille {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid #d2d2d7;
+  flex-shrink: 0;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.tache.done .pastille {
+  background: linear-gradient(135deg, #30d158, #00c7be);
+  border-color: transparent;
+}
+.tache.done .pastille::after {
+  content: '✓';
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Texte */
+.tache-texte {
+  font-size: 14px;
+  color: #1d1d1f;
+  flex: 1;
+  transition: color .2s, text-decoration .2s;
+  line-height: 1.4;
+}
+.tache.done .tache-texte {
+  color: #aeaeb2;
+  text-decoration: line-through;
+}
+
+/* Bouton supprimer admin */
+.tache-delete {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #d70015;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.tache:hover .tache-delete {
+  opacity: 1;
+}
+.tache-delete:hover {
+  background: rgba(255,59,48,.1);
+}
+
+/* ── ÉTATS ── */
+.loading, .empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #aeaeb2;
+  font-size: 14px;
+}
+
+/* ── ADMIN ── */
+.admin-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+  color: #aeaeb2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: color .2s, background .2s;
+}
+.admin-trigger:hover {
+  color: #6e6e73;
+  background: rgba(0,0,0,.05);
+}
+
+.admin-badge {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1a7f3c;
+  background: rgba(48,209,88,.12);
+  border: .5px solid rgba(48,209,88,.25);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+.admin-badge:hover {
+  background: rgba(48,209,88,.2);
+}
+
+/* Bouton ajouter — admin uniquement */
+.btn-add-tache {
+  display: none;
+  width: calc(100% - 52px);
+  margin: 8px 26px 16px;
+  padding: 10px;
+  border: 1.5px dashed rgba(0,113,227,.3);
+  border-radius: 10px;
+  background: transparent;
+  color: #0071e3;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+.btn-add-tache:hover {
+  background: rgba(0,113,227,.04);
+  border-color: #0071e3;
+}
+.admin-mode .btn-add-tache { display: block; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal {
+  background: white;
+  border-radius: 18px;
+  padding: 32px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.15);
+  transform: translateY(10px);
+  transition: transform .2s;
+  position: relative;
+}
+.modal-overlay.open .modal {
+  transform: translateY(0);
+}
+.modal h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -.02em;
+}
+.modal p {
+  font-size: 13px;
+  color: #6e6e73;
+  margin-bottom: 20px;
+}
+.modal-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f5f5f7;
+  border: .5px solid rgba(0,0,0,.1);
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 10px;
+  transition: border-color .2s, box-shadow .2s;
+  font-family: inherit;
+}
+.modal-input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0,113,227,.1);
+  background: white;
+}
+.modal-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #0071e3;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s;
+  font-family: inherit;
+}
+.modal-btn:hover {
+  background: #0077ed;
+}
+.modal-err {
+  font-size: 13px;
+  color: #d70015;
+  margin-top: 8px;
+  display: none;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #6e6e73;
+  cursor: pointer;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .rb-header { padding: 50px 20px 24px; }
+  .progress-wrap { padding: 18px 20px; }
+  .categorie-header { padding: 16px 20px; }
+  .tache { padding: 12px 20px; }
+  .btn-add-tache { width: calc(100% - 40px); margin: 8px 20px 12px; }
+  .cat-titre { font-size: 14px; }
+  .tache-texte { font-size: 13px; }
+}
