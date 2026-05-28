@@ -2,11 +2,11 @@
 
 > Candidat BTS SIO en alternance · Option SLAM · Lens, France
 
-Site portfolio multi-pages avec backend, animations et espace admin, déployé sur GitHub Pages.
+Portfolio multi-pages déployé sur GitHub Pages, avec suivi de formation en temps réel et backend Supabase.
 
 ## 🔗 Live
 
-**[io2310.github.io/Portfolio-V2](https://io2310.github.io/Portfolio-V2/)**
+**[io2310.github.io/Portfolio](https://io2310.github.io/Portfolio/)**
 
 ---
 
@@ -15,10 +15,10 @@ Site portfolio multi-pages avec backend, animations et espace admin, déployé s
 | Couche | Technologie | Usage |
 |--------|-------------|-------|
 | Frontend | HTML5, CSS3, JavaScript | Structure, style, interactions |
-| Animations | GSAP 3 + ScrollTrigger | Révélation au scroll, mot par mot |
-| Backend | Supabase (PostgreSQL) | BDD, auth, API REST |
+| Animations | GSAP 3 + ScrollTrigger | Révélation au scroll, transitions |
+| Backend | Supabase (PostgreSQL) | Auth + suivi de progression |
 | Email | EmailJS | Formulaire de contact |
-| Hébergement | GitHub Pages | Déploiement statique gratuit |
+| Hébergement | GitHub Pages | Déploiement statique |
 
 ---
 
@@ -26,71 +26,58 @@ Site portfolio multi-pages avec backend, animations et espace admin, déployé s
 
 ```
 Portfolio/
-├── index.html          # Accueil
-├── about.html          # À propos + compétences
-├── projects.html       # Projets
-├── contact.html        # Formulaire contact → Supabase + EmailJS
-├── style.css           # CSS global
-├── script.js           # JS global (animations, nav, transitions)
-├── supabase.js         # Connexion base de données
-├── libs/               # Librairies locales (GSAP)
-├── live-editor/        # Éditeur HTML/CSS/JS en temps réel
-└── taskboard/          # Kanban avec auth Supabase
-    ├── taskboard.html  # Interface publique + login admin
-    ├── test.js         # Logique Supabase + auth
-    └── test.css        # Styles Apple
+├── index.html              # Accueil
+├── about.html              # À propos + compétences
+├── projects.html           # Projets
+├── contact.html            # Formulaire de contact (EmailJS)
+├── style.css               # CSS global
+├── script.js               # JS global
+├── supabase.js             # Connexion Supabase
+├── cv-ismael-ouzani.pdf    # CV téléchargeable
+├── favicon.svg
+├── libs/                   # Librairies locales
+│   ├── gsap.min.js
+│   └── ScrollTrigger.min.js
+├── live-editor/            # Éditeur HTML/CSS/JS en temps réel
+└── learning-tracker/       # Suivi de formation freeCodeCamp
+    ├── index.html
+    ├── learning-tracker.css
+    └── learning-tracker.js
 ```
 
 ---
 
 ## ⚙️ Fonctionnalités
 
-### Formulaire contact
-- Sauvegarde chaque message dans Supabase
-- Envoi email via EmailJS
-- Double sécurité : même si l'email part en spam, le message est en BDD
+### Formulaire de contact
+- Envoi direct par email via EmailJS
+- Aucune donnée personnelle stockée
 
-### TaskBoard public
-- Tâches visibles par tous en lecture seule
-- Login admin discret (bouton ⚙ en bas à droite)
-- Toi seul peux ajouter/modifier/supprimer via Supabase Auth
-- Barre de progression de formation visible par les recruteurs
-
-### Espace admin local
-- `admin.html` — non déployé, à ouvrir en local uniquement
-- Voir tous les messages reçus avec bouton Répondre
-- Gérer les tâches du TaskBoard
+### Suivi de formation — Learning Tracker
+- Progression freeCodeCamp visible publiquement (HTML, CSS, JavaScript)
+- Sections cochables uniquement par l'administrateur via Supabase Auth
+- Barre de progression globale mise à jour en temps réel
 
 ### LiveCode Editor
-- Éditeur HTML/CSS/JS avec rendu temps réel
-- Coloration syntaxique, sauvegarde auto, téléchargement
-- Inspiré de CodePen — construit from scratch
+- Éditeur HTML/CSS/JS avec prévisualisation en direct
+- Sauvegarde automatique et téléchargement
+- Inspiré de CodePen — développé from scratch
 
 ---
 
 ## 🗄 Base de données Supabase
 
-### Table `messages`
+### Table `progression`
 | Champ | Type | Description |
 |-------|------|-------------|
 | id | uuid | Identifiant unique |
-| nom | text | Nom de l'expéditeur |
-| email | text | Email de l'expéditeur |
-| sujet | text | Sujet du message |
-| message | text | Contenu |
-| created_at | timestamp | Date d'envoi |
-
-### Table `taches`
-| Champ | Type | Description |
-|-------|------|-------------|
-| id | uuid | Identifiant unique |
-| texte | text | Contenu de la tâche |
-| colonne | text | todo / encours / termine |
-| created_at | timestamp | Date de création |
+| section_id | text | Identifiant de la section freeCodeCamp |
+| complete | boolean | Section terminée ou non |
+| updated_at | timestamp | Date de mise à jour |
 
 ### Règles de sécurité (RLS)
-- `messages` → accès public en lecture/écriture (formulaire contact)
-- `taches` → lecture publique, écriture réservée aux utilisateurs authentifiés
+- Lecture publique — tout le monde voit la progression
+- Écriture réservée aux utilisateurs authentifiés (admin uniquement)
 
 ---
 

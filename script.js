@@ -187,7 +187,6 @@ async function envoyerMessage() {
   }
   btn.disabled = true; btn.textContent = 'Envoi…'; statut.className = 'statut-form';
   try {
-    await sauvegarderMessage(nom, email, sujet, message);
     await emailjs.send('service_9iambjx', 'template_x5w20bd', {
       from_name: nom, from_email: email,
       subject: sujet || 'Contact via portfolio', message, to_name: 'Ismaël'
