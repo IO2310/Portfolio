@@ -200,3 +200,57 @@ async function envoyerMessage() {
   }
   btn.disabled = false; btn.textContent = 'Envoyer →';
 }
+
+/* ── MODAL CONTACT ── */
+function ouvrirContact() {
+  document.getElementById('contactOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function fermerContact() {
+  document.getElementById('contactOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('contactOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) fermerContact();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') fermerContact();
+    });
+  }
+});
+
+/* ── FORMULAIRE CONTACT — EmailJS ── */
+async function envoyerMessage() {
+  const nom     = document.getElementById('champ_nom')?.value.trim();
+  const email   = document.getElementById('champ_email')?.value.trim();
+  const sujet   = document.getElementById('champ_sujet')?.value.trim();
+  const message = document.getElementById('champ_message')?.value.trim();
+  const statut  = document.getElementById('statut_form');
+  const btn     = document.getElementById('btn_envoyer');
+  if (!nom || !email || !message) {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Nom, email et message requis.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Envoi…'; statut.className = 'statut-form';
+  try {
+    await emailjs.send('service_9iambjx', 'template_x5w20bd', {
+      from_name: nom, from_email: email,
+      subject: sujet || 'Contact via portfolio',
+      message, to_name: 'Ismaël'
+    });
+    statut.className = 'statut-form ok';
+    statut.textContent = '✓ Message envoyé ! Réponse sous 24h.';
+    ['champ_nom','champ_email','champ_sujet','champ_message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  } catch {
+    statut.className = 'statut-form err';
+    statut.textContent = '✗ Erreur. Écrivez à ismael.ouzani@gmail.com';
+  }
+  btn.disabled = false; btn.textContent = 'Envoyer →';
+}

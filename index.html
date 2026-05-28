@@ -16,9 +16,8 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="about.html">À propos</a></li>
       <li><a href="projects.html">Projets</a></li>
-      <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a href="contact.html" class="nav-cta">Me recruter</a>
+    <button class="nav-cta" onclick="ouvrirContact()" style="background:none;border:none;cursor:pointer;font-family:inherit">Me recruter</button>
     <button class="nav-hamburger" aria-label="Ouvrir le menu">☰</button>
   </div>
 </nav>
@@ -27,9 +26,27 @@
   <a href="index.html">Accueil</a>
   <a href="about.html">À propos</a>
   <a href="projects.html">Projets</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html">Me recruter →</a>
+  <button onclick="ouvrirContact()" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:16px;color:var(--text);padding:16px 24px;text-align:left">Me recruter →</button>
 </nav>
+
+
+<!-- Modal contact -->
+<div class="contact-modal-overlay" id="contactOverlay">
+  <div class="contact-modal">
+    <button class="contact-modal-close" onclick="fermerContact()">✕</button>
+    <h2>Me recruter</h2>
+    <p>Disponible dès septembre 2026 · Réponse sous 24h</p>
+    <div class="champ-row">
+      <input class="champ" type="text" id="champ_nom" placeholder="Votre nom">
+      <input class="champ" type="email" id="champ_email" placeholder="Votre email">
+    </div>
+    <input class="champ" type="text" id="champ_sujet" placeholder="Sujet — ex : Proposition d'alternance" style="width:100%;margin-bottom:10px">
+    <textarea class="champ" id="champ_message" placeholder="Votre message..."></textarea>
+    <div class="statut-form" id="statut_form"></div>
+    <button class="btn-envoyer" id="btn_envoyer" onclick="envoyerMessage()">Envoyer →</button>
+    <p class="note">⚡ Via EmailJS · Aucune donnée stockée</p>
+  </div>
+</div>
 
 <div class="page-wrap">
 
@@ -55,8 +72,9 @@
         Débutant en développement, mais déjà capable de concevoir, <strong>apprendre</strong> et livrer des projets <strong>fonctionnels</strong>.
       </p>
       <div class="hero-btns reveal" data-d=".44">
-        <a href="contact.html" class="btn btn-blue btn-mag">Me recruter <span class="btn-arrow">→</span></a>
+        <button onclick="ouvrirContact()" class="btn btn-blue btn-mag">Me recruter <span class="btn-arrow">→</span></button>
         <a href="projects.html" class="btn btn-gray btn-mag">Voir mes projets <span class="btn-arrow">→</span></a>
+        <a href="learning-tracker/index.html" class="btn btn-gray btn-mag">Ma progression freeCodeCamp <span class="btn-arrow">→</span></a>
       </div>
     </div>
 
@@ -72,8 +90,8 @@
           <div class="stat-desc">Projets fonctionnels et déployables</div>
         </div>
         <div class="stat-card zoom-in" data-d=".16">
-          <div class="stat-num"><span data-count="3">0</span><span class="stat-unit"> j.</span></div>
-          <div class="stat-desc">Pour livrer ce portfolio from scratch</div>
+          <div class="stat-num"><span data-count="6">0</span><span class="stat-unit"> mois</span></div>
+          <div class="stat-desc">De formation autodidacte active</div>
         </div>
         <div class="stat-card zoom-in" data-d=".24">
           <div class="stat-num neutral">2026</div>
@@ -127,7 +145,7 @@
         Je suis motivé, je m’investis à 100%, et je suis capable d’apprendre vite avec les outils modernes
       </p>
       <div class="cta-btns reveal" data-d=".24">
-        <a href="contact.html" class="btn btn-blue btn-mag">Écrire un message <span class="btn-arrow">→</span></a>
+        <button onclick="ouvrirContact()" class="btn btn-blue btn-mag">Écrire un message <span class="btn-arrow">→</span></button>
         <a href="projects.html" class="btn btn-white-outline btn-mag">Voir mes projets <span class="btn-arrow">→</span></a>
       </div>
     </div>
@@ -140,7 +158,7 @@
         <nav class="footer-links">
           <a href="about.html">À propos</a>
           <a href="projects.html">Projets</a>
-          <a href="contact.html">Contact</a>
+          <button onclick="ouvrirContact()" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--muted)">Contact</button>
           <a href="https://github.com/IO2310/Portfolio" target="_blank">GitHub</a>
         </nav>
       </div>
@@ -155,6 +173,8 @@
 
 <script src="libs/gsap.min.js"></script>
 <script src="libs/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({ publicKey: 'qGUzlrqndBUPSlxuM' });</script>
 <script src="script.js"></script>
 </body>
 </html>
