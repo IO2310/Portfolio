@@ -3,6 +3,11 @@
    Script principal
 ════════════════════════════════════════ */
 
+/* Initialisation EmailJS */
+if (typeof emailjs !== 'undefined') {
+  emailjs.init({ publicKey: 'qGUzlrqndBUPSlxuM' });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── TRANSITIONS DE PAGES ── */
